@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
+import { addSmurf } from "../actions";
+import "./App.css";
+
 const Form = props => {
-  const [smurf, setsmurf] = useState({ name: "", email: "", position: "" });
+  const [smurf, setsmurf] = useState({ name: "", age: "", height: "" });
 
   const changeHandler = e => {
-    setTeamMember({ ...teamMember, [e.target.name]: e.target.value });
+    setsmurf({ ...smurf, [e.target.name]: e.target.value });
   };
 
   const submitHandler = e => {
     e.preventDefault();
-    props.addMember(teamMember);
-    setTeamMember({ name: "", email: "", position: "" });
+    props.addSmurf(smurf);
+    setsmurf({ name: "", age: "", height: "" });
   };
-
-  useEffect(() => {
-    if (props.memberToEdit) {
-      console.log("edit!");
-      setTeamMember(props.memberToEdit);
-    }
-  }, [props.memberToEdit]);
 
   return (
     <div className="form">
@@ -30,27 +26,27 @@ const Form = props => {
             name="name"
             type="text"
             placeholder="Name Here"
-            value={teamMember.name}
+            value={smurf.name}
           />
         </div>
         <div className="formItem">
-          <label htmlFor="email">Email: </label>
+          <label htmlFor="email">Age: </label>
           <input
             onChange={changeHandler}
-            name="email"
+            name="age"
             type="text"
-            placeholder="Email Here"
-            value={teamMember.email}
+            placeholder="Age Here"
+            value={smurf.age}
           />
         </div>
         <div className="formItem">
-          <label htmlFor="position">Role: </label>
+          <label htmlFor="position">Height: </label>
           <input
             onChange={changeHandler}
-            name="position"
+            name="height"
             type="text"
-            placeholder="Role Here"
-            value={teamMember.position}
+            placeholder="Height Here"
+            value={smurf.height}
           />
         </div>
         <button type="submit">Submit Form</button>
@@ -59,4 +55,13 @@ const Form = props => {
   );
 };
 
-export default Form;
+const mapStateToProps = state => {
+  return {
+    smurfs: state.smurfs
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { addSmurf }
+)(Form);

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { connect } from "react-redux";
 import Village from "./Village.js";
+import Smurform from "./Smurform.js";
 import { getSmurf } from "../actions";
 
 const App = ({ message, smurfs, getSmurf }) => {
@@ -16,6 +17,7 @@ const App = ({ message, smurfs, getSmurf }) => {
       <div>Welcome to your state management version of Smurfs!</div>
       <h2>{message}</h2>
       <Village />
+      <Smurform />
     </div>
   );
 };
