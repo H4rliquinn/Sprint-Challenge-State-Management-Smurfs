@@ -29,6 +29,13 @@ export const rootReducer = (state = initialState, action) => {
     case GET_FAIL:
       console.log(action.payload);
       return { ...state, message: action.payload };
+    case ADD_SMURF:
+      return { ...state, message: action.payload };
+    case ADD_SUCCESS:
+      return { message: "Smurf added", smurfs: action.payload };
+    case ADD_FAIL:
+      console.log(action.payload);
+      return { ...state, message: action.payload };
     default:
       return state;
   }

@@ -22,12 +22,13 @@ export const getSmurf = () => dispatch => {
     });
 };
 
-export const addSmurf = () => dispatch => {
+export const addSmurf = smurf => dispatch => {
   dispatch({ type: ADD_SMURF, payload: "Adding to the village" });
+  console.log("addS", smurf);
   axios
-    .post("http://localhost:3333")
+    .post("http://localhost:3333/smurfs", smurf)
     .then(res => {
-      //   console.log("RES", res.data);
+      console.log("RES", res.data);
       dispatch({ type: ADD_SUCCESS, payload: res.data });
     })
     .catch(err => {
