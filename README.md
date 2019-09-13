@@ -23,10 +23,22 @@ In this challenge, you are to build the Smurfs village once again, only this tim
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+Prop drilling. Having to specifically pass each prop through every intermediary level which bloats the code and lowers readability.
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+Store is the single source of truth for all state in the application that might need to be used by other components. Any info that affects the presentation of the App should be immutably stored there. Actions are dispatched to update the state. Reducers are used to process the incoming actions and replace the state with a new one.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+Component state is local to a single component and won't need to affect the rest of the app, such as holding form values. Application state is where all information relevant to presenting the App to the user is kept, it's the purpose of the store in Redux.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+      Thunk allows us to make Action calls asynchronously by returning a function from a function. It requires more action creators to follow the different states the promise can be in, from attempting, to success or failure.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+      They're really just different. If there's only a few values to pass around, I'd probably just use Context and props for a quick and easy setup. For any serious application, though, it'd have to be Redux, so much power there once the framework is set up.
 
 ## Project Set Up
 
